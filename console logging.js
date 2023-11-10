@@ -3,3 +3,4 @@
 let myName = "Dean";
 let myLastName = "Viljoen";
 console.log(myName,myLastName);
+let arrTest = [1,5,3,4,2];
