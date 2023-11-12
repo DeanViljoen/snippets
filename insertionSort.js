@@ -1,5 +1,6 @@
 let arr = [5,3,2,9,1,4,6,7,8,0];
 
+/*
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         let temp = arr[i];
@@ -16,5 +17,19 @@ function insertionSort(arr) {
         console.log("Iteration",i,":",arr);
     }
     return arr;
+}*/
+
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let temp = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > temp) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = temp;
+    }
+    return arr;
 }
+
 console.log(insertionSort(arr));
