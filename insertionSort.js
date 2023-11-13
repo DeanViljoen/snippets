@@ -18,7 +18,7 @@ function insertionSort(arr) {
     }
     return arr;
 }*/
-
+/*
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         let temp = arr[i];
@@ -31,5 +31,24 @@ function insertionSort(arr) {
     }
     return arr;
 }
+*/
+/*13-11-23: Let's implement it again*/
+function swap(firstIndex, secondIndex, arr) {
+    temp = arr[firstIndex];
+    arr[firstIndex] = arr[secondIndex];
+    arr[secondIndex] = temp;
+}
 
-console.log(insertionSort(arr));
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let j = i - 1;
+        let temp = arr[i];
+        while (j >= 0 && temp < arr[j]) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1]=temp;
+    }
+}
+insertionSort(arr);
+console.log(arr);
