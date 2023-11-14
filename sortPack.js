@@ -29,7 +29,7 @@ function bubbleSort(arr) {
     }
 }
 */
-
+/*
 //Another shot to get it really internalised
 function bubbleSort(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
@@ -42,7 +42,36 @@ function bubbleSort(arr) {
         }
     }
 }
+*/
 
+/*
+function bubbleSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j+1]) {
+                let temp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+*/
+
+//more bubble sort!
+function bubbleSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j+1]) {
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
+
+/*
 function selectionSort(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
         let min = i;
@@ -56,12 +85,41 @@ function selectionSort(arr) {
         arr[min] = temp;
     }
 }
+*/
+//Let's go again:
+function selectionSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        let min = arr[i];
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[min]) {
+                min = j;
+            }
+        }
+        let temp = arr[i];
+        arr[i] = arr[min];
+        arr[min] = temp;
+    }
+}
 
+/*
 function insertionSort(arr) {
     for (i = 1; i < arr.length; i++) {
         let j = i - 1;
         let temp = arr[i];
         while (j >= 0 && arr[j] > temp) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = temp;
+    }
+}
+*/
+//14-11-23: Let's try today
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let j = i - 1;
+        let temp = arr[i];
+        while (j >= 0 && temp < arr[j]) {
             arr[j+1] = arr[j];
             j--;
         }
