@@ -57,8 +57,21 @@ function bubbleSort(arr) {
     }
 }
 */
-
+/*
 //more bubble sort!
+function bubbleSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j+1]) {
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
+*/
+//keep it going
 function bubbleSort(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
         for (let j = 0; j < arr.length - 1 - i; j++) {
@@ -128,18 +141,77 @@ function insertionSort(arr) {
 }
 
 function mergeSort(arr) {
-
+    if (arr.length == 1) {return;} //base case
+    let mid = Math.floor(arr.length / 2);
+    let leftArray = [], rightArray = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (i < mid) {
+            leftArray.push(arr[i]);
+        } else {
+            rightArray.push(arr[i]);
+        }
+    }
+    mergeSort(leftArray);
+    mergeSort(rightArray);
+    merge(leftArray, rightArray, arr);
 }
 
-function merge(rightArrayStart, arr) {
-    let l = 0, r = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i+l] > arr[rightArrayStart]) {
-            
+function merge(leftArray, rightArray, originalArray) {
+    let l = 0, r = 0, i = 0;
+    while (l < leftArray.length && r < rightArray.length) {
+        if (leftArray[l] < rightArray[r]) {
+            originalArray[i] = leftArray[l];
+            l++;
+        } else {
+            originalArray[i] = rightArray[r];
+            r++;
         }
+        i++;
+    }
+    while (l < leftArray.length) {
+        originalArray[i] = leftArray[l];
+        l++;
+        i++;
+    }
+    while (r < rightArray.length) {
+        originalArray[i] = rightArray[r];
+        r++;
+        i++;
     }
 }
 
+//weird but seems to work!
+function partition(start, end, arr) {
+    //find pivot
+    let pivot = Math.floor((start+end)/2);
+    //swap pivot and first element
+    let temp = arr[start];
+    arr[start]=arr[pivot];
+    arr[pivot]=temp;
+    let j = start;
+    for (let i = j + 1;  i <= end; i++) {
+        if (arr[i] < arr[start]) {
+            let temp = arr[j+1];
+            arr[j+1] = arr[i];
+            arr[i] = temp; 
+            j++;
+        }
+    }
+    temp = arr[j];
+    arr[j] = arr[start];
+    arr[start] = temp;
+    return j;
+}
+
+function quickSort(start, end, arr) {
+    if (start >= end) return;
+    let pivot = partition(start, end, arr);
+    quickSort(start,pivot-1,arr);
+    quickSort(pivot+1,end,arr);
+}
+
 let arr = [5,9,2,0,1,7,6,8,8,8,3];
-bubbleSort(arr);
-console.log(arr);
+//mergeSort(arr);
+let arr2 = [9,6,5,6,7,2,1,6,1,3,7,0,9,0];
+bubbleSort(arr2);
+console.log(arr2);
