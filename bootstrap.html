@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dropdown Example</title>
+</head>
+<body>
+
+<div class="dropdown">
+  <button class="btn btn-secondary" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
+    Select an option
+  </button>
+  <div class="dropdown-menu" id="dropdownOptions" style="display: none;">
+    <!-- Dropdown items will be populated here -->
+  </div>
+</div>
+
+<script>
+  function toggleDropdown() {
+    const dropdownMenu = document.getElementById('dropdownOptions');
+
+    // Sample array of values
+    const valuesArray = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
+
+    // Clear existing dropdown items
+    dropdownMenu.innerHTML = '';
+
+    // Populate the dropdown with options
+    valuesArray.forEach(value => {
+      const option = document.createElement('div');
+      option.classList.add('dropdown-item');
+      option.textContent = value;
+      option.onclick = function() {
+        document.querySelector('.btn-secondary').textContent = value;
+        dropdownMenu.style.display = 'none';
+      };
+      dropdownMenu.appendChild(option);
+    });
+
+    // Toggle dropdown display
+    if (dropdownMenu.style.display === 'none') {
+      dropdownMenu.style.display = 'block';
+    } else {
+      dropdownMenu.style.display = 'none';
+    }
+  }
+
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.btn-secondary')) {
+      const dropdowns = document.getElementsByClassName('dropdown-menu');
+      for (let i = 0; i < dropdowns.length; i++) {
+        const openDropdown = dropdowns[i];
+        if (openDropdown.style.display === 'block') {
+          openDropdown.style.display = 'none';
+        }
+      }
+    }
+  };
+</script>
+
+</body>
+</html>
